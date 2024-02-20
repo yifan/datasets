@@ -232,6 +232,17 @@ ALL_CC_VERSIONS = (  # as of August 1, 2022
     "2022-27",
 )
 
+ADDITIONAL_CC_VERSIONS = (  # August 1, 2022 - February 18, 2024
+    "2022-33",
+    "2022-40",
+    "2022-49",
+    "2023-06",
+    "2023-14",
+    "2023-23",
+    "2023-40",
+    "2023-50",
+)
+
 _KNOWN_CORRUPT_WET_FILES = (  # as of August 12, 2022
     # files that raise UnicodeDecodeError
     "crawl-data/CC-MAIN-2017-13/segments/1490218203536.73/wet/CC-MAIN-20170322213003-00052-ip-10-233-31-227.ec2.internal.warc.wet.gz",
@@ -479,6 +490,19 @@ class C4(tfds.core.BeamBasedBuilder):
           description=(
               "Multilingual C4 (mC4) has 101 languages and is generated from 86"
               " Common Crawl dumps."
+          ),
+      ),
+      C4Config(
+          "ar_additional",
+          languages=["ar"],
+          cc_versions=ADDITIONAL_CC_VERSIONS,
+          clean=False,
+          paragraph_filter=True,
+          dedupe=True,
+          badwords_filter_fraction=0.999,
+          description=(
+              "Arabic text from Common Crawl dumps which weren't included in"
+              " Multilingual C4 (mC4)"
           ),
       ),
   ]
